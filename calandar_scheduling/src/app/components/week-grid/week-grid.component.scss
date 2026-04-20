@@ -1,123 +1,173 @@
-@import "../../../themes/index";
+/* Week Grid Component Styles (Plain CSS) */
 
-@mixin week-grid-theme {
-  .calendar-grid-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #f9fafb;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #d1d5db;
-      border-radius: 4px;
-    }
-  }
-
-  .calendar-header-row {
-    display: grid;
-    grid-template-columns: 60px repeat(7, 1fr);
-    background: map-get(map-get(map-get($Palette, Theme), Whites), main);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid #f3f4f6;
-    padding: 16px 0;
-
-    .corner-cell {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .calendar-icon {
-        font-size: 20px;
-        color: #8c8d96;
-      }
-    }
-
-    .day-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 8px;
-      border-radius: 16px;
-      transition: all 0.2s;
-      margin: 0 4px;
-
-      .day-name {
-        font-size: 13px;
-        color: #8c8d96;
-        font-weight: 500;
-      }
-
-      .day-date {
-        font-size: 24px;
-        font-weight: 600;
-        color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-      }
-
-      &.active {
-        background: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-
-        .day-name {
-          color: #8c8d96;
-        }
-
-        .day-date {
-          color: map-get(map-get(map-get($Palette, Theme), Whites), main);
-        }
-      }
-    }
-  }
-
-  .calendar-body {
-    display: grid;
-    grid-template-columns: 60px repeat(7, 1fr);
-    flex-grow: 1;
-    position: relative;
-
-    .time-column {
-      border-right: 1px solid #f3f4f6;
-      background: #f9fafb;
-
-      .time-slot {
-        height: 60px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        .time-label {
-          position: absolute;
-          top: -8px;
-          font-size: 11px;
-          color: #8c8d96;
-          background: #f9fafb;
-          padding: 0 4px;
-        }
-      }
-    }
-
-    .day-column {
-      position: relative;
-      border-right: 1px solid #f3f4f6;
-
-      .grid-cell {
-        height: 60px;
-        border-bottom: 1px solid #f3f4f6;
-        box-sizing: border-box;
-      }
-    }
-  }
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
 }
 
-@include week-grid-theme();
+.calendar-grid-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f9fafb;
+}
+
+.calendar-grid-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.calendar-grid-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.calendar-grid-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.calendar-header-row {
+  display: grid;
+  grid-template-columns: 60px repeat(7, 1fr);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #f3f4f6;
+  padding: 16px 0;
+}
+
+.calendar-header-row .corner-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-header-row .corner-cell .calendar-icon {
+  font-size: 20px;
+  color: #8c8d96;
+}
+
+.calendar-header-row .day-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  transition: all 0.2s;
+  margin: 0 4px;
+}
+
+.calendar-header-row .day-header .day-name {
+  font-size: 13px;
+  color: #8c8d96;
+  font-weight: 500;
+}
+
+.calendar-header-row .day-header .day-date {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--surface-3);
+}
+
+.calendar-header-row .day-header.active {
+  background: var(--surface-3);
+}
+
+.calendar-header-row .day-header.active .day-name {
+  color: #8c8d96;
+}
+
+.calendar-header-row .day-header.active .day-date {
+  color: var(--white);
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: 60px repeat(7, 1fr);
+  flex-grow: 1;
+  position: relative;
+}
+
+.calendar-body .time-column {
+  border-right: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.calendar-body .time-column .time-slot {
+  height: 60px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-body .time-column .time-slot .time-label {
+  position: absolute;
+  top: -8px;
+  font-size: 11px;
+  color: #8c8d96;
+  background: #f9fafb;
+  padding: 0 4px;
+}
+
+.calendar-body .day-column {
+  position: relative;
+  border-right: 1px solid #f3f4f6;
+}
+
+.calendar-body .day-column .grid-cell {
+  height: 60px;
+  border-bottom: 1px solid #f3f4f6;
+  box-sizing: border-box;
+}
+
+.calendar-body .day-column .draft-event {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  border-radius: 12px;
+  background-color: rgba(241, 245, 249, 0.6);
+  border: 2px dashed #94a3b8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.calendar-body .day-column .draft-event .draft-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #94a3b8;
+  color: #94a3b8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background: white;
+}
+
+.calendar-body .day-column .current-time-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ef4444;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.calendar-body .day-column .current-time-line .circle {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ef4444;
+}

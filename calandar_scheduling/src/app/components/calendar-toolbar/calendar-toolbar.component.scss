@@ -1,84 +1,79 @@
-@import "../../../themes/index";
+/* Calendar Toolbar Component Styles (Plain CSS) */
 
-@mixin calendar-toolbar-theme {
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 32px 16px;
-    background: map-get(map-get(map-get($Palette, Theme), Whites), main);
-  
-    .left-section h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 600;
-      color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-    }
-  
-    .view-switch {
-      display: flex;
-      background: #f3f4f6;
-      border-radius: 20px;
-      padding: 4px;
-  
-      button {
-        background: transparent;
-        border: none;
-        padding: 6px 16px;
-        border-radius: 16px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #8c8d96;
-        cursor: pointer;
-        transition: all 0.2s;
-  
-        &.active {
-          background: map-get(map-get(map-get($Palette, Theme), Whites), main);
-          color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-      }
-    }
-  
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #f3f4f6;
-      border-radius: 20px;
-      padding: 4px;
-  
-      button {
-        background: transparent;
-        border: none;
-        border-radius: 16px;
-        cursor: pointer;
-        font-weight: 500;
-        color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-        transition: all 0.2s;
-  
-        &.icon-btn {
-          width: 32px;
-          height: 32px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          
-          &:hover {
-            background: map-get(map-get(map-get($Palette, Theme), Whites), main);
-          }
-        }
-  
-        &.today-btn {
-          padding: 6px 16px;
-          font-size: 13px;
-          background: map-get(map-get(map-get($Palette, Theme), Whites), main);
-          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-      }
-    }
-  }
-  
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px 16px;
+  background: var(--white);
 }
 
-@include calendar-toolbar-theme();
+.toolbar .left-section h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--surface-3);
+}
+
+.toolbar .view-switch {
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 4px;
+}
+
+.toolbar .view-switch button {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8c8d96;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolbar .view-switch button.active {
+  background: var(--white);
+  color: var(--surface-3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar .nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 4px;
+}
+
+.toolbar .nav-controls button {
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--surface-3);
+  transition: all 0.2s;
+}
+
+.toolbar .nav-controls button.icon-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar .nav-controls button.icon-btn:hover {
+  background: var(--white);
+}
+
+.toolbar .nav-controls button.today-btn {
+  padding: 6px 16px;
+  font-size: 13px;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

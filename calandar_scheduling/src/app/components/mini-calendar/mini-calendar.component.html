@@ -2,22 +2,27 @@
   <div class="header">
     <h5>{{currentMonthName}}</h5>
     <div class="nav-buttons">
-      <button class="nav-btn">&lt;</button>
-      <button class="nav-btn">&gt;</button>
+      <button class="nav-btn" (click)="changeMonth(-1)">&lt;</button>
+      <button class="nav-btn" (click)="changeMonth(1)">&gt;</button>
     </div>
   </div>
   
   <div class="grid days-header">
-    <div class="day-name" *ngFor="let day of daysOfWeek">{{day}}</div>
+    @for (dayName of daysOfWeek; track dayName) {
+      <div class="day-name">{{dayName}}</div>
+    }
   </div>
 
   <div class="grid days-grid">
-    <div 
-      class="day-cell" 
-      *ngFor="let d of days"
-      [class.inactive]="d.inactive"
-      [class.active]="d.active">
-      {{d.num}}
-    </div>
+    @for (dayItem of days; track dayItem.date.getTime()) {
+      <div 
+        class="day-cell" 
+        (click)="selectDate(dayItem)"
+        [class.inactive]="dayItem.inactive"
+        [class.active]="dayItem.isSelected"
+        style="cursor: pointer;">
+        {{dayItem.num}}
+      </div>
+    }
   </div>
 </div>

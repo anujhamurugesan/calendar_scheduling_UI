@@ -4,30 +4,51 @@
     <div class="corner-cell">
       <div class="calendar-icon">📅</div>
     </div>
-    <div class="day-header" *ngFor="let day of days" [class.active]="day.active">
-      <span class="day-name">{{day.name}}</span>
-      <span class="day-date">{{day.date}}</span>
-    </div>
+    @for (day of days; track day.fullDateStr) {
+      <div class="day-header" [class.active]="day.active" (click)="onDayHeaderClick(day)" style="cursor: pointer;">
+        <span class="day-name">{{day.name}}</span>
+        <span class="day-date">{{day.date}}</span>
+      </div>
+    }
   </div>
 
   <div class="calendar-body">
     <div class="time-column">
-      <div class="time-slot" *ngFor="let hour of hours">
-        <span class="time-label">{{formatHour(hour)}}</span>
-      </div>
+      @for (hour of hours; track hour) {
+        <div class="time-slot">
+          <span class="time-label">{{formatHour(hour)}}</span>
+        </div>
+      }
     </div>
     
-    <div class="day-column" *ngFor="let day of days">
-      <div class="grid-cell" *ngFor="let hour of hours"></div>
-      
-      <ng-container *ngIf="day.events && day.events.length > 0">
-        <app-event-card 
-          *ngFor="let ev of day.events"
-          [event]="ev" 
-          [style.top]="ev.top"
-          [style.height]="ev.height">
-        </app-event-card>
-      </ng-container>
-    </div>
+    @for (day of days; track day.fullDateStr) {
+      <div class="day-column">
+        @if (day.active) {
+          <div class="current-time-line" [style.top]="currentTimeTop">
+            <div class="circle"></div>
+          </div>
+        }
+        
+        @for (hour of hours; track hour) {
+          <div class="grid-cell" (click)="onSlotClick(day, hour, $event)" style="cursor: pointer;"></div>
+        }
+        
+        @if (day.events && day.events.length > 0) {
+          @for (event of day.events; track event.title) {
+            <app-event-card 
+              [event]="event">
+            </app-event-card>
+          }
+        }
+
+        @if (draftEvent && draftEvent.date === day.fullDateStr) {
+          <div class="draft-event"
+               [style.top]="draftEvent.top"
+               [style.height]="draftEvent.height">
+            <div class="draft-icon">+</div>
+          </div>
+        }
+      </div>
+    }
   </div>
 </div>

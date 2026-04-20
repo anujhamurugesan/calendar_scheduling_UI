@@ -1,316 +1,308 @@
-@import "../../../themes/index";
-
-@mixin sidebar-theme {
-  :host {
-    display: block;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .sidebar {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    height: 100%;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #2a2b36;
-      border-radius: 4px;
-    }
-  }
-
-  .user-profile {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-    }
-
-    .user-info {
-      flex-grow: 1;
-
-      h4 {
-        margin: 0 0 4px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #fff;
-      }
-
-      p {
-        margin: 0;
-        font-size: 11px;
-        color: #8c8d96;
-      }
-    }
-
-    .notifications {
-      position: relative;
-
-      .icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #252631;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          stroke: #fff;
-          width: 16px;
-          height: 16px;
-        }
-      }
-
-      .badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        background: #8b5cf6;
-        color: map-get(map-get(map-get($Palette, Theme), Whites), main);
-        font-size: 10px;
-        font-weight: bold;
-        width: 16px;
-        height: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        border: 2px solid map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
-      }
-    }
-  }
-
-  .mini-calendar-wrapper {
-    background: #252631;
-    border-radius: 16px;
-    padding: 16px;
-  }
-
-  .upcoming-event-card {
-    background: linear-gradient(135deg, #1f202b, #15161d);
-    border: 1px solid #2d2d3a;
-    border-radius: 16px;
-    padding: 20px;
-    position: relative;
-
-    .time {
-      font-size: 11px;
-      color: #8c8d96;
-      margin-bottom: 8px;
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.3;
-      margin-bottom: 16px;
-      max-width: 80%;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-
-      button {
-        background: transparent;
-        border: 1px solid #4a4b5a;
-        color: #fff;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 12px;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &.btn-details {
-          background: #8b5cf6;
-          border-color: #8b5cf6;
-        }
-
-        &:hover {
-          opacity: 0.9;
-        }
-      }
-    }
-
-    .eta {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 11px;
-      background: #2d2d3a;
-      padding: 4px 8px;
-      border-radius: 12px;
-      color: #fff;
-    }
-
-    .book-graphic {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-size: 40px;
-      opacity: 0.8;
-    }
-  }
-
-  .filter-section {
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-
-      h4 {
-        margin: 0;
-        font-size: 15px;
-        font-weight: 600;
-        color: #fff;
-      }
-
-      .arrow {
-        color: #8c8d96;
-        font-size: 12px;
-      }
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-  }
-
-  /* Custom Checkbox */
-  .filter-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .custom-checkbox {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      gap: 12px;
-      user-select: none;
-
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-      }
-
-      .checkmark {
-        height: 18px;
-        width: 18px;
-        border: 2px solid #4a4b5a;
-        border-radius: 6px;
-        background-color: transparent;
-        position: relative;
-      }
-
-      &:hover input ~ .checkmark {
-        border-color: #8b5cf6;
-      }
-
-      input:checked ~ .checkmark {
-        background-color: transparent;
-        border-color: #8b5cf6;
-      }
-
-      .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-      }
-
-      input:checked ~ .checkmark:after {
-        display: block;
-      }
-
-      .checkmark:after {
-        left: 5px;
-        top: 1px;
-        width: 4px;
-        height: 9px;
-        border: solid #8b5cf6;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-      }
-
-      .label-text {
-        font-size: 13px;
-        color: #d1d1d6;
-      }
-    }
-
-    .count-badge {
-      background: #8b5cf6;
-      color: map-get(map-get(map-get($Palette, Theme), Whites), main);
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-  }
-
-  .category-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-
-    .cat-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      width: 80px;
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-
-      .label-text {
-        font-size: 13px;
-        color: #d1d1d6;
-      }
-    }
-
-    .progress-bar {
-      flex-grow: 1;
-      height: 4px;
-      background: #252631;
-      border-radius: 2px;
-      overflow: hidden;
-
-      .fill {
-        height: 100%;
-        border-radius: 2px;
-      }
-    }
-  }
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
 }
 
-@include sidebar-theme();
+.sidebar {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #2a2b36;
+  border-radius: 4px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-profile .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-profile .user-info {
+  flex-grow: 1;
+}
+
+.user-profile .user-info h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.user-profile .user-info p {
+  margin: 0;
+  font-size: 11px;
+  color: #8c8d96;
+}
+
+.notifications {
+  position: relative;
+}
+
+.notifications .icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #252631;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications .icon svg {
+  stroke: #fff;
+  width: 16px;
+  height: 16px;
+}
+
+.notifications .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #8b5cf6;
+  color: var(--white);
+  font-size: 10px;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--surface-3);
+}
+
+.mini-calendar-wrapper {
+  background: #252631;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.upcoming-event-card {
+  background: linear-gradient(135deg, #1f202b, #15161d);
+  border: 1px solid #2d2d3a;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.upcoming-event-card .time {
+  font-size: 11px;
+  color: #8c8d96;
+  margin-bottom: 8px;
+}
+
+.upcoming-event-card .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  max-width: 80%;
+}
+
+.upcoming-event-card .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.upcoming-event-card .actions button {
+  background: transparent;
+  border: 1px solid #4a4b5a;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upcoming-event-card .actions button.btn-details {
+  background: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.upcoming-event-card .actions button:hover {
+  opacity: 0.9;
+}
+
+.upcoming-event-card .eta {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 11px;
+  background: #2d2d3a;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.upcoming-event-card .book-graphic {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 40px;
+  opacity: 0.8;
+}
+
+.filter-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filter-section .section-header h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.filter-section .section-header .arrow {
+  color: #8c8d96;
+  font-size: 12px;
+}
+
+.filter-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Custom Checkbox */
+.filter-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-list li .custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+  user-select: none;
+}
+
+.filter-list li .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.filter-list li .custom-checkbox .checkmark {
+  height: 18px;
+  width: 18px;
+  border: 2px solid #4a4b5a;
+  border-radius: 6px;
+  background-color: transparent;
+  position: relative;
+}
+
+.filter-list li .custom-checkbox:hover input ~ .checkmark {
+  border-color: #8b5cf6;
+}
+
+.filter-list li .custom-checkbox input:checked ~ .checkmark {
+  background-color: transparent;
+  border-color: #8b5cf6;
+}
+
+.filter-list li .custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.filter-list li .custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.filter-list li .custom-checkbox .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid #8b5cf6;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-list li .custom-checkbox .label-text {
+  font-size: 13px;
+  color: #d1d1d6;
+}
+
+.filter-list li .count-badge {
+  background: #8b5cf6;
+  color: var(--white);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.category-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.category-list li .cat-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 80px;
+}
+
+.category-list li .cat-info .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.category-list li .cat-info .label-text {
+  font-size: 13px;
+  color: #d1d1d6;
+}
+
+.category-list li .progress-bar {
+  flex-grow: 1;
+  height: 4px;
+  background: #252631;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.category-list li .progress-bar .fill {
+  height: 100%;
+  border-radius: 2px;
+}

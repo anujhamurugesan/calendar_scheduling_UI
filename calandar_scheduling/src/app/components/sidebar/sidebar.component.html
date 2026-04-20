@@ -25,18 +25,21 @@
   <div class="mini-calendar-wrapper">
     <app-mini-calendar></app-mini-calendar>
   </div>
-  <div class="upcoming-event-card">
-    <div class="time">12:00 - 13:30</div>
-    <div class="title">Meat Gabriel at the International Library</div>
-    <div class="actions">
-      <button class="btn-later">Later</button>
-      <button class="btn-details">Details</button>
+  
+  @if (upcomingEvent) {
+    <div class="upcoming-event-card">
+      <div class="time">{{upcomingEvent.time}}</div>
+      <div class="title">{{upcomingEvent.title}}</div>
+      <div class="actions">
+        <button class="btn-later">Later</button>
+        <button class="btn-details">Details</button>
+      </div>
+      <div class="eta">
+        <span>{{etaString}}</span>
+      </div>
+      <div class="book-graphic">📖</div>
     </div>
-    <div class="eta">
-      <span>🔔 14 min</span>
-    </div>
-    <div class="book-graphic">📖</div>
-  </div>
+  }
 
   <div class="filter-section">
     <div class="section-header">
@@ -44,14 +47,18 @@
       <span class="arrow">v</span>
     </div>
     <ul class="filter-list">
-      <li *ngFor="let cal of calendars">
-        <label class="custom-checkbox">
-          <input type="checkbox" [checked]="cal.checked">
-          <span class="checkmark"></span>
-          <span class="label-text">{{cal.name}}</span>
-        </label>
-        <span class="count-badge" *ngIf="cal.count > 0">{{cal.count}}</span>
-      </li>
+      @for (cal of calendars; track cal.name) {
+        <li>
+          <label class="custom-checkbox">
+            <input type="checkbox" [checked]="cal.checked">
+            <span class="checkmark"></span>
+            <span class="label-text">{{cal.name}}</span>
+          </label>
+          @if (cal.count > 0) {
+            <span class="count-badge">{{cal.count}}</span>
+          }
+        </li>
+      }
     </ul>
   </div>
 
@@ -61,15 +68,17 @@
       <span class="arrow">v</span>
     </div>
     <ul class="category-list">
-      <li *ngFor="let cat of categories">
-        <div class="cat-info">
-          <span class="dot" [style.background-color]="cat.color"></span>
-          <span class="label-text">{{cat.name}}</span>
-        </div>
-        <div class="progress-bar">
-          <div class="fill" [style.width.%]="cat.value" [style.background-color]="cat.color"></div>
-        </div>
-      </li>
+      @for (cat of categories; track cat.name) {
+        <li>
+          <div class="cat-info">
+            <span class="dot" [style.background-color]="cat.color"></span>
+            <span class="label-text">{{cat.name}}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="fill" [style.width.%]="cat.value" [style.background-color]="cat.color"></div>
+          </div>
+        </li>
+      }
     </ul>
   </div>
 </div>

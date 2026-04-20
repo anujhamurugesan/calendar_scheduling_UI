@@ -1,5 +1,25 @@
-@import './themes/index';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --surface-1: #0f1115;
+  --surface-2: #1a1d24;
+  --surface-3: #17181e;
+  --border: #2e3342;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --white: #ffffff;
+  --text-secondary: #a0aabf;
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+}
 
 html,
 body {
@@ -7,9 +27,9 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: map-get(map-get($Typography, FontFamilies), primary);
-  background-color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-1);
-  color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+  font-family: var(--font-primary);
+  background-color: var(--surface-1);
+  color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

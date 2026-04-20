@@ -1,50 +1,51 @@
-<div class="event-modal-overlay">
-  <div class="event-modal">
-    <form [formGroup]="eventForm" (ngSubmit)="addEvent()">
-      <div class="form-group head">
-        <input class="title-input" formControlName="title" placeholder="Event Title" />
-      </div>
-
-      <div class="form-row">
-        <div class="icon">📅</div>
-        <input class="styled-input" formControlName="date" />
-      </div>
-
-      <div class="form-row split">
-        <div class="icon">🕒</div>
-        <select class="styled-select" formControlName="startTime">
-          <option value="06:00">06:00</option>
-        </select>
-        <span class="divider">-</span>
-        <select class="styled-select" formControlName="endTime">
-          <option value="07:00">07:00</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <div class="icon">📍</div>
-        <input class="styled-input" formControlName="location" />
-      </div>
-
-      <div class="tags-row">
-        <span class="tag purple">Design</span>
-        <span class="tag gold">Personal project</span>
-        <span class="tag blue">Developer task</span>
-      </div>
-
-      <div class="modal-footer">
-        <div class="users">
-          <div class="user avatar-1"></div>
-          <div class="user avatar-2"></div>
-          <div class="user avatar-3"></div>
-          <div class="user add-btn">+</div>
+@if (eventService.modalVisible$ | async) {
+  <div class="dismiss-overlay" (click)="closeModal()" style="position: fixed; inset: 0; z-index: 49;"></div>
+  <div class="event-modal-overlay" [style.left.px]="startingTime" [style.top.px]="endingTime">
+    <div class="event-modal">
+      <form [formGroup]="eventForm" (ngSubmit)="addEvent()">
+        <div class="form-group head">
+          <input class="title-input" formControlName="title" placeholder="Event Title" />
         </div>
-        
-        <div class="actions">
-          <button type="submit" class="primary-btn">Add Event</button>
-          <button type="button" class="more-btn">...</button>
+
+        <div class="form-row">
+          <div class="icon">📅</div>
+          <input type="date" class="styled-input" formControlName="date" />
         </div>
-      </div>
-    </form>
+
+        <div class="form-row split">
+          <div class="icon">🕒</div>
+          <input type="time" class="styled-input" formControlName="startTime" />
+          <span class="divider">-</span>
+          <input type="time" class="styled-input" formControlName="endTime" />
+        </div>
+
+        <div class="form-row">
+          <div class="icon">📍</div>
+          <input class="styled-input" formControlName="location" />
+        </div>
+
+        <div class="tags-row">
+          <select class="styled-select" style="width: 100%; border-radius: 12px; padding: 10px 16px; border: none; background: #f9fafb; outline: none; font-weight: 500;" formControlName="category">
+            <option value="Design">Design</option>
+            <option value="Personal project">Personal project</option>
+            <option value="Developer task">Developer task</option>
+          </select>
+        </div>
+
+        <div class="modal-footer">
+          <div class="users">
+            <div class="user avatar-1"></div>
+            <div class="user avatar-2"></div>
+            <div class="user avatar-3"></div>
+            <div class="user add-btn">+</div>
+          </div>
+          
+          <div class="actions">
+            <button type="button" class="more-btn" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="primary-btn" [disabled]="eventForm.invalid" [style.opacity]="eventForm.invalid ? '0.5' : '1'" [style.cursor]="eventForm.invalid ? 'not-allowed' : 'pointer'">Add Event</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+}
