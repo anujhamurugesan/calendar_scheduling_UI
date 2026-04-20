@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import './themes/index';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: map-get(map-get($Typography, FontFamilies), primary);
+  background-color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-1);
+  color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}

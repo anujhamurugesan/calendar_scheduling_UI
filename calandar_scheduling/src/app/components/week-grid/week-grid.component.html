@@ -1,0 +1,33 @@
+<div class="calendar-grid-container">
+  
+  <div class="calendar-header-row">
+    <div class="corner-cell">
+      <div class="calendar-icon">📅</div>
+    </div>
+    <div class="day-header" *ngFor="let day of days" [class.active]="day.active">
+      <span class="day-name">{{day.name}}</span>
+      <span class="day-date">{{day.date}}</span>
+    </div>
+  </div>
+
+  <div class="calendar-body">
+    <div class="time-column">
+      <div class="time-slot" *ngFor="let hour of hours">
+        <span class="time-label">{{formatHour(hour)}}</span>
+      </div>
+    </div>
+    
+    <div class="day-column" *ngFor="let day of days">
+      <div class="grid-cell" *ngFor="let hour of hours"></div>
+      
+      <ng-container *ngIf="day.events && day.events.length > 0">
+        <app-event-card 
+          *ngFor="let ev of day.events"
+          [event]="ev" 
+          [style.top]="ev.top"
+          [style.height]="ev.height">
+        </app-event-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

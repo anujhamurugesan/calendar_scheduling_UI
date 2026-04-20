@@ -1,0 +1,50 @@
+<div class="event-modal-overlay">
+  <div class="event-modal">
+    <form [formGroup]="eventForm" (ngSubmit)="addEvent()">
+      <div class="form-group head">
+        <input class="title-input" formControlName="title" placeholder="Event Title" />
+      </div>
+
+      <div class="form-row">
+        <div class="icon">📅</div>
+        <input class="styled-input" formControlName="date" />
+      </div>
+
+      <div class="form-row split">
+        <div class="icon">🕒</div>
+        <select class="styled-select" formControlName="startTime">
+          <option value="06:00">06:00</option>
+        </select>
+        <span class="divider">-</span>
+        <select class="styled-select" formControlName="endTime">
+          <option value="07:00">07:00</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="icon">📍</div>
+        <input class="styled-input" formControlName="location" />
+      </div>
+
+      <div class="tags-row">
+        <span class="tag purple">Design</span>
+        <span class="tag gold">Personal project</span>
+        <span class="tag blue">Developer task</span>
+      </div>
+
+      <div class="modal-footer">
+        <div class="users">
+          <div class="user avatar-1"></div>
+          <div class="user avatar-2"></div>
+          <div class="user avatar-3"></div>
+          <div class="user add-btn">+</div>
+        </div>
+        
+        <div class="actions">
+          <button type="submit" class="primary-btn">Add Event</button>
+          <button type="button" class="more-btn">...</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

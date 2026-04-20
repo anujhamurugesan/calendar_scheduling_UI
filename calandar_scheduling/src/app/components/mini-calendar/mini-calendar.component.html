@@ -1,0 +1,23 @@
+<div class="mini-calendar">
+  <div class="header">
+    <h5>{{currentMonthName}}</h5>
+    <div class="nav-buttons">
+      <button class="nav-btn">&lt;</button>
+      <button class="nav-btn">&gt;</button>
+    </div>
+  </div>
+  
+  <div class="grid days-header">
+    <div class="day-name" *ngFor="let day of daysOfWeek">{{day}}</div>
+  </div>
+
+  <div class="grid days-grid">
+    <div 
+      class="day-cell" 
+      *ngFor="let d of days"
+      [class.inactive]="d.inactive"
+      [class.active]="d.active">
+      {{d.num}}
+    </div>
+  </div>
+</div>

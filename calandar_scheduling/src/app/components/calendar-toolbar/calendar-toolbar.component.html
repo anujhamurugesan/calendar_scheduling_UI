@@ -1,0 +1,21 @@
+<div class="toolbar">
+  <div class="left-section">
+    <h2>December, 2023</h2>
+  </div>
+
+  <div class="center-section">
+    <div class="view-switch">
+      <button [class.active]="currentView === 'Month'" (click)="setView('Month')">Month</button>
+      <button [class.active]="currentView === 'Week'" (click)="setView('Week')">Week</button>
+      <button [class.active]="currentView === 'Day'" (click)="setView('Day')">Day</button>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="nav-controls">
+      <button class="icon-btn">&lt;</button>
+      <button class="today-btn">Today</button>
+      <button class="icon-btn">&gt;</button>
+    </div>
+  </div>
+</div>

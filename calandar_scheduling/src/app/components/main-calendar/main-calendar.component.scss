@@ -1,0 +1,18 @@
+@import "../../../themes/index";
+
+@mixin main-calendar-theme {
+  .main-calendar-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .calendar-content {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  
+}
+
+@include main-calendar-theme();

@@ -1,0 +1,203 @@
+@import "../../../themes/index";
+
+@mixin event-modal-theme {
+  .event-modal-overlay {
+    position: absolute;
+    top: 150px;
+    right: 250px;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .event-modal {
+    background: map-get(map-get(map-get($Palette, Theme), Whites), main);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    padding: 24px;
+    pointer-events: auto;
+    animation: popIn 0.3s ease-out forwards;
+  }
+
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group.head {
+    margin-bottom: 8px;
+  }
+
+  .title-input {
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      color: #cbd5e1;
+    }
+  }
+
+  .form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .icon {
+      font-size: 18px;
+      color: #8c8d96;
+      width: 24px;
+      text-align: center;
+    }
+
+    .styled-input,
+    .styled-select {
+      flex-grow: 1;
+      border: none;
+      background: #f9fafb;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #475569;
+      outline: none;
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    .styled-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 8px auto;
+    }
+
+    &.split {
+      .styled-select {
+        width: 40%;
+      }
+
+      .divider {
+        color: #94a3b8;
+      }
+    }
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: 36px;
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+
+      &.purple {
+        background: #e0e7ff;
+        color: map-get(map-get(map-get($Palette, Theme), Colors), primary-hover);
+      }
+
+      &.gold {
+        background: #fef3c7;
+        color: #b45309;
+      }
+
+      &.blue {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+
+    .users {
+      display: flex;
+
+      .user {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background: #e2e8f0;
+        margin-left: -8px;
+
+        &:first-child {
+          margin-left: 0;
+          background-color: #f87171;
+        }
+
+        &:nth-child(2) {
+          background-color: #60a5fa;
+        }
+
+        &:nth-child(3) {
+          background-color: #34d399;
+        }
+
+        &.add-btn {
+          background: map-get(map-get(map-get($Palette, Theme), Whites), main);
+          border: 2px dashed #cbd5e1;
+          color: #94a3b8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 4px;
+
+      button {
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .primary-btn {
+        background: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
+        color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+        padding: 10px 20px;
+      }
+
+      .more-btn {
+        background: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
+        color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+        padding: 10px 12px;
+      }
+    }
+  }
+}
+
+@include event-modal-theme();

@@ -1,0 +1,53 @@
+@import "../../../themes/index";
+
+@mixin dashboard-theme {
+  :host {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    background-color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-1);
+    padding: 1rem;
+    box-sizing: border-box;
+    font-family: map-get(map-get($Typography, FontFamilies), primary);
+    overflow: hidden;
+  }
+
+  .dashboard-layout {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: map-get(map-get(map-get($Palette, Theme), Whites), main);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      overflow-y: auto;
+    }
+  }
+
+  .sidebar-container {
+    width: 320px;
+    min-width: 320px;
+    background-color: map-get(map-get(map-get($Palette, Common), Surfaces), surface-3);
+    color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+
+  .main-container {
+    flex-grow: 1;
+    background-color: map-get(map-get(map-get($Palette, Theme), Whites), main);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
+
+@include dashboard-theme();
